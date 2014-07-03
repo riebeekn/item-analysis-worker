@@ -1,0 +1,14 @@
+# This file contains the ENV vars necessary to run the app locally.  
+# Some of these values are sensitive, and some are developer specific.
+#
+# DO NOT CHECK THIS FILE INTO VERSION CONTROL
+
+ENV["AWS_BUCKET"]               = ""
+ENV["AWS_ACCESS_KEY_ID"]        = ""
+ENV["AWS_SECRET_ACCESS_KEY"]    = ""
+ENV["TMP_DIR"]                  = "./tmp/"
+ENV["SKIP_S3_UPLOAD"]           = "true"
+ENV["RUN_MIRT"]                 = "false"
+ENV["CLEAN_LOCAL_TEMP"]         = "false"
+ENV["CLEAN_S3_TEMP"]            = "true"
+ENV["PULL_INPUT_FILES_FROM_S3"] = "false"
