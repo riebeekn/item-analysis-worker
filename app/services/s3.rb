@@ -1,3 +1,5 @@
+require 'aws/s3'
+
 class S3
   def self.load_config
     unless Settings.SKIP_S3_UPLOAD? && !Settings.PULL_INPUT_FILES_FROM_S3?

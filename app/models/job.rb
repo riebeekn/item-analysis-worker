@@ -16,7 +16,7 @@ class Job < ActiveRecord::Base
   #
   def self.get_next_job_to_process
     Job.transaction do
-      job = Job.where("status = '#{PENDING}'").order("id").lock(true).first
+      job = Job.where("status = '#{PENDING}'").order("job_start ASC").lock(true).first
       unless job.nil?
         job.status = PROCESSING
         job.worker = ENV["WORKER_NAME"] || "localhost"
