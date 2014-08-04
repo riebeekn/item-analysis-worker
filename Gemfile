@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'trollop'
-gem 'activerecord'
-gem 'activerecord-postgresql-adapter'
+gem 'mongoid'
+gem 'bson_ext'
 gem 'prawn', '~> 1.1.0'
 # gem 'prawn', '0.11.1'
 # use below if want to attempt to set table position, still doesn't seem to work thou

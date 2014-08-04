@@ -15,6 +15,7 @@ require './app/models/job_facade'
 require './app/services/database'
 require './app/services/settings'
 require './app/services/s3'
+require 'mongoid'
 
 def run!
   # require './app/pdfs/toc_test'

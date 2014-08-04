@@ -1,9 +1,21 @@
+require 'mongoid'
 require 'csv'
 require 'descriptive_statistics'
 require 'fileutils'
 require './app/models/exam.rb'
 
-class Job < ActiveRecord::Base
+class Job
+    include Mongoid::Document
+    field :status, type: String
+    field :worker, type: String
+    field :job_start, type: Time
+    field :job_stop, type: Time
+    field :message, type: String
+    field :data_file, type: String
+    field :key_file, type: String
+    field :created_at, type: Time
+    field :updated_at, type: Time
+
   PENDING = "Pending"
   PROCESSING = "Processing"
   DONE = "Done" 
@@ -15,16 +27,14 @@ class Job < ActiveRecord::Base
   # Grab the next job to process from the DB
   #
   def self.get_next_job_to_process
-    Job.transaction do
-      job = Job.where("status = '#{PENDING}'").order("job_start ASC").lock(true).first
-      unless job.nil?
-        job.status = PROCESSING
-        job.worker = ENV["WORKER_NAME"] || "localhost"
-        job.job_start = utc_now
-        job.save!
-        job.exam = Exam.new
-        job
-      end
+    job = Job.where("status = '#{PENDING}'").order("job_start ASC").first
+    unless job.nil?
+      job.status = PROCESSING
+      job.worker = ENV["WORKER_NAME"] || "localhost"
+      job.job_start = utc_now
+      job.save!
+      job.exam = Exam.new
+      job
     end
   end
 
