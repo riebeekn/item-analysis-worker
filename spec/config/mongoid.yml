@@ -1,0 +1,6 @@
+test:
+  sessions:
+    default:
+      database: your_gem_db
+      hosts:
+        - localhost:27017

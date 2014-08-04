@@ -18,14 +18,21 @@ RSpec.configure do |config|
   # set up the test database connection since this doesn't happen
   # automatically outside of a rails app
   require 'yaml'
-  require 'active_record'
-  environment = 'test'
-  dbconfig    = YAML.load(File.read('db/config.yml'))
-  ActiveRecord::Base.establish_connection dbconfig[environment]
+  # require 'active_record'
+  require 'mongoid'
+  env = 'test'
+  # dbconfig    = YAML.load(File.read('db/config.yml'))
+  Mongoid.load!('./spec/config/mongoid.yml', env)
+  # ActiveRecord::Base.establish_connection dbconfig[environment]
 
   # add the factory girl requires
   require 'factory_girl'
   require 'factories'
+
+  # Clean up all collections before each spec runs.
+  config.before do
+    Mongoid.purge!
+  end
 
   # load ENV settings
   heroku_env = "./config/heroku_env.rb"
