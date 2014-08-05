@@ -21,7 +21,9 @@ describe Job do
     end
 
     context "when no pending jobs are queued" do
-      before { FactoryGirl.create(:job, status: 'anything but pending') }
+      before do
+        FactoryGirl.create(:job, status: 'anything but pending') 
+      end
 
       it "should return nil" do
         Job.get_next_job_to_process.should be_nil
@@ -234,18 +236,18 @@ describe Job do
 
   private
     def check_start_time(job)
-      job.job_start.year.should eq Time.now.utc.year
-      job.job_start.month.should eq Time.now.utc.month
-      job.job_start.day.should eq Time.now.utc.day
-      job.job_start.hour.should eq Time.now.utc.hour
-      job.job_start.min.should eq Time.now.utc.min
+      job.job_start.year.should eq Time.now.year
+      job.job_start.month.should eq Time.now.month
+      job.job_start.day.should eq Time.now.day
+      job.job_start.hour.should eq Time.now.hour 
+      job.job_start.min.should eq Time.now.min
     end
 
     def check_stop_time(job)
-      job.job_stop.year.should eq Time.now.utc.year
-      job.job_stop.month.should eq Time.now.utc.month
-      job.job_stop.day.should eq Time.now.utc.day
-      job.job_stop.hour.should eq Time.now.utc.hour
-      job.job_stop.min.should eq Time.now.utc.min
+      job.job_stop.year.should eq Time.now.year
+      job.job_stop.month.should eq Time.now.month
+      job.job_stop.day.should eq Time.now.day
+      job.job_stop.hour.should eq Time.now.hour
+      job.job_stop.min.should eq Time.now.min
     end
 end

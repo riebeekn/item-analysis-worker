@@ -4,8 +4,11 @@ require 'descriptive_statistics'
 require 'fileutils'
 require './app/models/exam.rb'
 
+require './app/services/logging'
+
 class Job
     include Mongoid::Document
+    include Mongoid::Timestamps
     field :status, type: String
     field :worker, type: String
     field :job_start, type: Time
@@ -13,8 +16,6 @@ class Job
     field :message, type: String
     field :data_file, type: String
     field :key_file, type: String
-    field :created_at, type: Time
-    field :updated_at, type: Time
 
   PENDING = "Pending"
   PROCESSING = "Processing"
@@ -27,7 +28,7 @@ class Job
   # Grab the next job to process from the DB
   #
   def self.get_next_job_to_process
-    job = Job.where("status = '#{PENDING}'").order("job_start ASC").first
+    job = Job.where(:status => "Pending").order_by([:created_at, :asc]).first
     unless job.nil?
       job.status = PROCESSING
       job.worker = ENV["WORKER_NAME"] || "localhost"

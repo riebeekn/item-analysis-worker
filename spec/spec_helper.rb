@@ -22,7 +22,8 @@ RSpec.configure do |config|
   require 'mongoid'
   env = 'test'
   # dbconfig    = YAML.load(File.read('db/config.yml'))
-  Mongoid.load!('./spec/config/mongoid.yml', env)
+  # Mongoid.load!('./spec/config/mongoid.yml', env)
+  Mongoid.load!('./config/mongoid.yml', env)
   # ActiveRecord::Base.establish_connection dbconfig[environment]
 
   # add the factory girl requires
@@ -32,6 +33,8 @@ RSpec.configure do |config|
   # Clean up all collections before each spec runs.
   config.before do
     Mongoid.purge!
+    # Mongoid.logger.level = Logger::DEBUG
+    # Moped.logger.level = Logger::DEBUG
   end
 
   # load ENV settings
