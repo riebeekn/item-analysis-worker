@@ -4,7 +4,6 @@
 #
 
 require 'active_record'
-require 'aws/s3'
 require './app/models/job_facade'
 require './app/services/database'
 require './app/services/settings'
