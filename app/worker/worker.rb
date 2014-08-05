@@ -3,7 +3,6 @@
 # => ruby app/worker/worker.rb
 #
 
-require 'aws/s3'
 require './app/models/job_facade'
 require './app/services/database'
 require './app/services/settings'
