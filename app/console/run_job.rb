@@ -10,7 +10,6 @@
 # => ruby app/console/run_job.rb --filename "./sample_data_files/50q_30p.csv"
 #
 require 'trollop'
-require 'active_record'
 require './app/models/job_facade'
 require './app/services/database'
 require './app/services/settings'

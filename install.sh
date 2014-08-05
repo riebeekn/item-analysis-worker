@@ -32,14 +32,14 @@ echo "    ---> Creating heroku app $1"
 heroku create $1 --stack cedar --remote $1 --buildpack https://github.com/ddollar/heroku-buildpack-multi.git
 
 echo "    ---> Pushing app $1 to heroku"
-git push $1 master
+git push $1 mongo:master
 
 echo "    ---> Configuring $1"
 # fix the path (due to multi-buildpack issue)
 heroku config:set PATH=bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/R/bin --remote $1
 # set the db connection info
-db_info=`heroku config:get DATABASE_URL --app $2`
-heroku config:set DATABASE_URL=$db_info --remote $1
+db_info=`heroku config:get MONGOHQ_URL --app $2`
+heroku config:set MONGOHQ_URL=$db_info --remote $1
 # set the worker name
 heroku config:add WORKER_NAME=$1 --remote $1
 # set the worker sleep time
