@@ -40,6 +40,8 @@ heroku config:set PATH=bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:
 # set the db connection info
 db_info=`heroku config:get MONGOHQ_URL --app $2`
 heroku config:set MONGOHQ_URL=$db_info --remote $1
+# set the environment to production
+heroku config:add RACK_ENV=production --remote $1
 # set the worker name
 heroku config:add WORKER_NAME=$1 --remote $1
 # set the worker sleep time
