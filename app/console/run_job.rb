@@ -41,12 +41,15 @@ end
 
 def create_job
   job = Job.new
+  puts "NEW: #{job._id}"
   job.status = "Pending"
   job.data_file = @opts[:datafile]
   job.key_file = @opts[:keyfile]
   job.save!
+  job.reload
+  puts "SAVED: #{job._id}"
   if Settings.PULL_INPUT_FILES_FROM_S3?
-    upload_input_files_to_s3(job.id, job.data_file, job.key_file)
+    upload_input_files_to_s3(job._id, job.data_file, job.key_file)
   end
   job
 end
