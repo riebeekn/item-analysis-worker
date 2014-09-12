@@ -17,10 +17,15 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     builder (3.2.2)
     descriptive_statistics (1.1.5)
     i18n (0.6.9)
     json (1.8.1)
+    mime-types (2.3)
     minitest (5.3.5)
     pdf-core (0.2.5)
     pg (0.17.1)
@@ -29,14 +34,12 @@ GEM
       ttfunk (~> 1.2.0)
     prawn-svg (0.15.0.0)
       prawn (>= 0.8.4)
-    proxies (0.2.1)
-    s3 (0.3.21)
-      proxies (~> 0.2.0)
     thread_safe (0.3.4)
     trollop (2.0)
     ttfunk (1.2.0)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
@@ -44,8 +47,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activerecord-postgresql-adapter
+  aws-s3
   descriptive_statistics
   prawn (~> 1.1.0)
   prawn-svg
-  s3
   trollop
