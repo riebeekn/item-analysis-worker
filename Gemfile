@@ -9,5 +9,5 @@ gem 'prawn', '~> 1.1.0'
 # use below if want to attempt to set table position, still doesn't seem to work thou
 # gem 'prawn', git: 'https://github.com/prawnpdf/prawn.git'
 gem 'prawn-svg'
-gem 'aws-s3'
+gem 's3'
 gem 'descriptive_statistics'
